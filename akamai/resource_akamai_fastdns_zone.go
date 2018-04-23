@@ -792,358 +792,295 @@ func mergeConfigs(recordType string, records []interface{}, s *schema.Resource, 
 func unmarshalResourceData(d *schema.ResourceData, zone *dns.Zone) {
 	s := resourceFastDNSZone()
 
-	_, ok := d.GetOk("a")
-	if ok {
-		if d.HasChange("a") {
-			zoneARecords := make([]interface{}, len(zone.Zone.A))
-			for k, v := range zone.Zone.A {
-				zoneARecords[k] = v.ToMap()
-			}
-			mergedARecords := mergeConfigs("a", zoneARecords, s, d)
-			zone.Zone.A = nil
-			for _, val := range mergedARecords.List() {
-				record := dns.NewARecord()
-				assignFields(record, val.(map[string]interface{}))
-				zone.AddRecord(record)
-			}
+	if d.HasChange("a") {
+		zoneARecords := make([]interface{}, len(zone.Zone.A))
+		for k, v := range zone.Zone.A {
+			zoneARecords[k] = v.ToMap()
+		}
+		mergedARecords := mergeConfigs("a", zoneARecords, s, d)
+		zone.Zone.A = nil
+		for _, val := range mergedARecords.List() {
+			record := dns.NewARecord()
+			assignFields(record, val.(map[string]interface{}))
+			zone.AddRecord(record)
 		}
 	}
 
-	_, ok = d.GetOk("aaaa")
-	if ok {
-		if d.HasChange("aaaa") {
-			zoneAaaaRecords := make([]interface{}, len(zone.Zone.Aaaa))
-			for k, v := range zone.Zone.Aaaa {
-				zoneAaaaRecords[k] = v.ToMap()
-			}
-			mergedAaaaRecords := mergeConfigs("aaaa", zoneAaaaRecords, s, d)
-			zone.Zone.Aaaa = nil
-			for _, val := range mergedAaaaRecords.List() {
-				record := dns.NewAaaaRecord()
-				assignFields(record, val.(map[string]interface{}))
-				zone.AddRecord(record)
-			}
+	if d.HasChange("aaaa") {
+		zoneAaaaRecords := make([]interface{}, len(zone.Zone.Aaaa))
+		for k, v := range zone.Zone.Aaaa {
+			zoneAaaaRecords[k] = v.ToMap()
+		}
+		mergedAaaaRecords := mergeConfigs("aaaa", zoneAaaaRecords, s, d)
+		zone.Zone.Aaaa = nil
+		for _, val := range mergedAaaaRecords.List() {
+			record := dns.NewAaaaRecord()
+			assignFields(record, val.(map[string]interface{}))
+			zone.AddRecord(record)
 		}
 	}
 
-	_, ok = d.GetOk("afsdb")
-	if ok {
-		if d.HasChange("afsdb") {
-			zoneAfsdbRecords := make([]interface{}, len(zone.Zone.Afsdb))
-			for k, v := range zone.Zone.Afsdb {
-				zoneAfsdbRecords[k] = v.ToMap()
-			}
-			mergedAfsdbRecords := mergeConfigs("afsdb", zoneAfsdbRecords, s, d)
-			zone.Zone.Afsdb = nil
-			for _, val := range mergedAfsdbRecords.List() {
-				record := dns.NewAfsdbRecord()
-				assignFields(record, val.(map[string]interface{}))
-				zone.AddRecord(record)
-			}
+	if d.HasChange("afsdb") {
+		zoneAfsdbRecords := make([]interface{}, len(zone.Zone.Afsdb))
+		for k, v := range zone.Zone.Afsdb {
+			zoneAfsdbRecords[k] = v.ToMap()
+		}
+		mergedAfsdbRecords := mergeConfigs("afsdb", zoneAfsdbRecords, s, d)
+		zone.Zone.Afsdb = nil
+		for _, val := range mergedAfsdbRecords.List() {
+			record := dns.NewAfsdbRecord()
+			assignFields(record, val.(map[string]interface{}))
+			zone.AddRecord(record)
 		}
 	}
 
-	_, ok = d.GetOk("cname")
-	if ok {
-		if d.HasChange("cname") {
-			zoneCnameRecords := make([]interface{}, len(zone.Zone.Cname))
-			for k, v := range zone.Zone.Cname {
-				zoneCnameRecords[k] = v.ToMap()
-			}
-			mergedCnameRecords := mergeConfigs("cname", zoneCnameRecords, s, d)
-			zone.Zone.Cname = nil
-			for _, val := range mergedCnameRecords.List() {
-				record := dns.NewCnameRecord()
-				assignFields(record, val.(map[string]interface{}))
-				zone.AddRecord(record)
-			}
+	if d.HasChange("cname") {
+		zoneCnameRecords := make([]interface{}, len(zone.Zone.Cname))
+		for k, v := range zone.Zone.Cname {
+			zoneCnameRecords[k] = v.ToMap()
+		}
+		mergedCnameRecords := mergeConfigs("cname", zoneCnameRecords, s, d)
+		zone.Zone.Cname = nil
+		for _, val := range mergedCnameRecords.List() {
+			record := dns.NewCnameRecord()
+			assignFields(record, val.(map[string]interface{}))
+			zone.AddRecord(record)
 		}
 	}
 
-	_, ok = d.GetOk("dnskey")
-	if ok {
-		if d.HasChange("dnskey") {
-			zoneDnskeyRecords := make([]interface{}, len(zone.Zone.Dnskey))
-			for k, v := range zone.Zone.Dnskey {
-				zoneDnskeyRecords[k] = v.ToMap()
-			}
-			mergedDnskeyRecords := mergeConfigs("dnskey", zoneDnskeyRecords, s, d)
-			zone.Zone.Dnskey = nil
-			for _, val := range mergedDnskeyRecords.List() {
-				record := dns.NewDnskeyRecord()
-				assignFields(record, val.(map[string]interface{}))
-				zone.AddRecord(record)
-			}
+	if d.HasChange("dnskey") {
+		zoneDnskeyRecords := make([]interface{}, len(zone.Zone.Dnskey))
+		for k, v := range zone.Zone.Dnskey {
+			zoneDnskeyRecords[k] = v.ToMap()
+		}
+		mergedDnskeyRecords := mergeConfigs("dnskey", zoneDnskeyRecords, s, d)
+		zone.Zone.Dnskey = nil
+		for _, val := range mergedDnskeyRecords.List() {
+			record := dns.NewDnskeyRecord()
+			assignFields(record, val.(map[string]interface{}))
+			zone.AddRecord(record)
 		}
 	}
 
-	_, ok = d.GetOk("ds")
-	if ok {
-		if d.HasChange("ds") {
-			zoneDsRecords := make([]interface{}, len(zone.Zone.Ds))
-			for k, v := range zone.Zone.Ds {
-				zoneDsRecords[k] = v.ToMap()
-			}
-			mergedDsRecords := mergeConfigs("ds", zoneDsRecords, s, d)
-			zone.Zone.Ds = nil
-			for _, val := range mergedDsRecords.List() {
-				record := dns.NewDsRecord()
-				assignFields(record, val.(map[string]interface{}))
-				zone.AddRecord(record)
-			}
+	if d.HasChange("ds") {
+		zoneDsRecords := make([]interface{}, len(zone.Zone.Ds))
+		for k, v := range zone.Zone.Ds {
+			zoneDsRecords[k] = v.ToMap()
+		}
+		mergedDsRecords := mergeConfigs("ds", zoneDsRecords, s, d)
+		zone.Zone.Ds = nil
+		for _, val := range mergedDsRecords.List() {
+			record := dns.NewDsRecord()
+			assignFields(record, val.(map[string]interface{}))
+			zone.AddRecord(record)
 		}
 	}
 
-	_, ok = d.GetOk("hinfo")
-	if ok {
-		if d.HasChange("hinfo") {
-			zoneHinfoRecords := make([]interface{}, len(zone.Zone.Hinfo))
-			for k, v := range zone.Zone.Hinfo {
-				zoneHinfoRecords[k] = v.ToMap()
-			}
-			mergedHinfoRecords := mergeConfigs("hinfo", zoneHinfoRecords, s, d)
-			zone.Zone.Hinfo = nil
-			for _, val := range mergedHinfoRecords.List() {
-				record := dns.NewHinfoRecord()
-				assignFields(record, val.(map[string]interface{}))
-				zone.AddRecord(record)
-			}
+	if d.HasChange("hinfo") {
+		zoneHinfoRecords := make([]interface{}, len(zone.Zone.Hinfo))
+		for k, v := range zone.Zone.Hinfo {
+			zoneHinfoRecords[k] = v.ToMap()
+		}
+		mergedHinfoRecords := mergeConfigs("hinfo", zoneHinfoRecords, s, d)
+		zone.Zone.Hinfo = nil
+		for _, val := range mergedHinfoRecords.List() {
+			record := dns.NewHinfoRecord()
+			assignFields(record, val.(map[string]interface{}))
+			zone.AddRecord(record)
 		}
 	}
 
-	_, ok = d.GetOk("loc")
-	if ok {
-		if d.HasChange("loc") {
-			zoneLocRecords := make([]interface{}, len(zone.Zone.Loc))
-			for k, v := range zone.Zone.Loc {
-				zoneLocRecords[k] = v.ToMap()
-			}
-			mergedLocRecords := mergeConfigs("loc", zoneLocRecords, s, d)
-			zone.Zone.Loc = nil
-			for _, val := range mergedLocRecords.List() {
-				record := dns.NewLocRecord()
-				assignFields(record, val.(map[string]interface{}))
-				zone.AddRecord(record)
-			}
+	if d.HasChange("loc") {
+		zoneLocRecords := make([]interface{}, len(zone.Zone.Loc))
+		for k, v := range zone.Zone.Loc {
+			zoneLocRecords[k] = v.ToMap()
+		}
+		mergedLocRecords := mergeConfigs("loc", zoneLocRecords, s, d)
+		zone.Zone.Loc = nil
+		for _, val := range mergedLocRecords.List() {
+			record := dns.NewLocRecord()
+			assignFields(record, val.(map[string]interface{}))
+			zone.AddRecord(record)
 		}
 	}
 
-	_, ok = d.GetOk("mx")
-	if ok {
-		if d.HasChange("mx") {
-			zoneMxRecords := make([]interface{}, len(zone.Zone.Mx))
-			for k, v := range zone.Zone.Mx {
-				zoneMxRecords[k] = v.ToMap()
-			}
-			mergedMxRecords := mergeConfigs("mx", zoneMxRecords, s, d)
-			zone.Zone.Mx = nil
-			for _, val := range mergedMxRecords.List() {
-				record := dns.NewMxRecord()
-				assignFields(record, val.(map[string]interface{}))
-				zone.AddRecord(record)
-			}
+	if d.HasChange("mx") {
+		zoneMxRecords := make([]interface{}, len(zone.Zone.Mx))
+		for k, v := range zone.Zone.Mx {
+			zoneMxRecords[k] = v.ToMap()
+		}
+		mergedMxRecords := mergeConfigs("mx", zoneMxRecords, s, d)
+		zone.Zone.Mx = nil
+		for _, val := range mergedMxRecords.List() {
+			record := dns.NewMxRecord()
+			assignFields(record, val.(map[string]interface{}))
+			zone.AddRecord(record)
 		}
 	}
 
-	_, ok = d.GetOk("naptr")
-	if ok {
-		if d.HasChange("naptr") {
-			zoneNaptrRecords := make([]interface{}, len(zone.Zone.Naptr))
-			for k, v := range zone.Zone.Naptr {
-				zoneNaptrRecords[k] = v.ToMap()
-			}
-			mergedNaptrRecords := mergeConfigs("naptr", zoneNaptrRecords, s, d)
-			zone.Zone.Naptr = nil
-			for _, val := range mergedNaptrRecords.List() {
-				record := dns.NewNaptrRecord()
-				assignFields(record, val.(map[string]interface{}))
-				zone.AddRecord(record)
-			}
+	if d.HasChange("naptr") {
+		zoneNaptrRecords := make([]interface{}, len(zone.Zone.Naptr))
+		for k, v := range zone.Zone.Naptr {
+			zoneNaptrRecords[k] = v.ToMap()
+		}
+		mergedNaptrRecords := mergeConfigs("naptr", zoneNaptrRecords, s, d)
+		zone.Zone.Naptr = nil
+		for _, val := range mergedNaptrRecords.List() {
+			record := dns.NewNaptrRecord()
+			assignFields(record, val.(map[string]interface{}))
+			zone.AddRecord(record)
 		}
 	}
 
-	_, ok = d.GetOk("ns")
-	if ok {
-		if d.HasChange("ns") {
-			zoneNsRecords := make([]interface{}, len(zone.Zone.Ns))
-			for k, v := range zone.Zone.Ns {
-				zoneNsRecords[k] = v.ToMap()
-			}
-			mergedNsRecords := mergeConfigs("ns", zoneNsRecords, s, d)
-			zone.Zone.Ns = nil
-			for _, val := range mergedNsRecords.List() {
-				record := dns.NewNsRecord()
-				assignFields(record, val.(map[string]interface{}))
-				zone.AddRecord(record)
-			}
+	if d.HasChange("ns") {
+		zoneNsRecords := make([]interface{}, len(zone.Zone.Ns))
+		for k, v := range zone.Zone.Ns {
+			zoneNsRecords[k] = v.ToMap()
+		}
+		mergedNsRecords := mergeConfigs("ns", zoneNsRecords, s, d)
+		zone.Zone.Ns = nil
+		for _, val := range mergedNsRecords.List() {
+			record := dns.NewNsRecord()
+			assignFields(record, val.(map[string]interface{}))
+			zone.AddRecord(record)
 		}
 	}
 
-	_, ok = d.GetOk("nsec3")
-	if ok {
-		if d.HasChange("nsec3") {
-			zoneNsec3Records := make([]interface{}, len(zone.Zone.Nsec3))
-			for k, v := range zone.Zone.Nsec3 {
-				zoneNsec3Records[k] = v.ToMap()
-			}
-			mergedNsec3Records := mergeConfigs("nsec3", zoneNsec3Records, s, d)
-			zone.Zone.Nsec3 = nil
-			for _, val := range mergedNsec3Records.List() {
-				record := dns.NewNsec3Record()
-				assignFields(record, val.(map[string]interface{}))
-				zone.AddRecord(record)
-			}
+	if d.HasChange("nsec3") {
+		zoneNsec3Records := make([]interface{}, len(zone.Zone.Nsec3))
+		for k, v := range zone.Zone.Nsec3 {
+			zoneNsec3Records[k] = v.ToMap()
+		}
+		mergedNsec3Records := mergeConfigs("nsec3", zoneNsec3Records, s, d)
+		zone.Zone.Nsec3 = nil
+		for _, val := range mergedNsec3Records.List() {
+			record := dns.NewNsec3Record()
+			assignFields(record, val.(map[string]interface{}))
+			zone.AddRecord(record)
 		}
 	}
 
-	_, ok = d.GetOk("nsec3param")
-	if ok {
-		if d.HasChange("nsec3param") {
-			zoneNsec3paramRecords := make([]interface{}, len(zone.Zone.Nsec3param))
-			for k, v := range zone.Zone.Nsec3param {
-				zoneNsec3paramRecords[k] = v.ToMap()
-			}
-			mergedNsec3paramRecords := mergeConfigs("nsec3param", zoneNsec3paramRecords, s, d)
-			zone.Zone.Nsec3param = nil
-			for _, val := range mergedNsec3paramRecords.List() {
-				record := dns.NewNsec3paramRecord()
-				assignFields(record, val.(map[string]interface{}))
-				zone.AddRecord(record)
-			}
+	if d.HasChange("nsec3param") {
+		zoneNsec3paramRecords := make([]interface{}, len(zone.Zone.Nsec3param))
+		for k, v := range zone.Zone.Nsec3param {
+			zoneNsec3paramRecords[k] = v.ToMap()
+		}
+		mergedNsec3paramRecords := mergeConfigs("nsec3param", zoneNsec3paramRecords, s, d)
+		zone.Zone.Nsec3param = nil
+		for _, val := range mergedNsec3paramRecords.List() {
+			record := dns.NewNsec3paramRecord()
+			assignFields(record, val.(map[string]interface{}))
+			zone.AddRecord(record)
 		}
 	}
 
-	_, ok = d.GetOk("ptr")
-	if ok {
-		if d.HasChange("ptr") {
-			zonePtrRecords := make([]interface{}, len(zone.Zone.Ptr))
-			for k, v := range zone.Zone.Ptr {
-				zonePtrRecords[k] = v.ToMap()
-			}
-			mergedPtrRecords := mergeConfigs("ptr", zonePtrRecords, s, d)
-			zone.Zone.Ptr = nil
-			for _, val := range mergedPtrRecords.List() {
-				record := dns.NewPtrRecord()
-				assignFields(record, val.(map[string]interface{}))
-				zone.AddRecord(record)
-			}
+	if d.HasChange("ptr") {
+		zonePtrRecords := make([]interface{}, len(zone.Zone.Ptr))
+		for k, v := range zone.Zone.Ptr {
+			zonePtrRecords[k] = v.ToMap()
+		}
+		mergedPtrRecords := mergeConfigs("ptr", zonePtrRecords, s, d)
+		zone.Zone.Ptr = nil
+		for _, val := range mergedPtrRecords.List() {
+			record := dns.NewPtrRecord()
+			assignFields(record, val.(map[string]interface{}))
+			zone.AddRecord(record)
 		}
 	}
 
-	_, ok = d.GetOk("rp")
-	if ok {
-		if d.HasChange("rp") {
-			zoneRpRecords := make([]interface{}, len(zone.Zone.Rp))
-			for k, v := range zone.Zone.Rp {
-				zoneRpRecords[k] = v.ToMap()
-			}
-			mergedRpRecords := mergeConfigs("rp", zoneRpRecords, s, d)
-			zone.Zone.Rp = nil
-			for _, val := range mergedRpRecords.List() {
-				record := dns.NewRpRecord()
-				assignFields(record, val.(map[string]interface{}))
-				zone.AddRecord(record)
-			}
+	if d.HasChange("rp") {
+		zoneRpRecords := make([]interface{}, len(zone.Zone.Rp))
+		for k, v := range zone.Zone.Rp {
+			zoneRpRecords[k] = v.ToMap()
+		}
+		mergedRpRecords := mergeConfigs("rp", zoneRpRecords, s, d)
+		zone.Zone.Rp = nil
+		for _, val := range mergedRpRecords.List() {
+			record := dns.NewRpRecord()
+			assignFields(record, val.(map[string]interface{}))
+			zone.AddRecord(record)
 		}
 	}
 
-	_, ok = d.GetOk("rrsig")
-	if ok {
-		if d.HasChange("rrsig") {
-			zoneRrsigRecords := make([]interface{}, len(zone.Zone.Rrsig))
-			for k, v := range zone.Zone.Rrsig {
-				zoneRrsigRecords[k] = v.ToMap()
-			}
-			mergedRrsigRecords := mergeConfigs("rrsig", zoneRrsigRecords, s, d)
-			zone.Zone.Rrsig = nil
-			for _, val := range mergedRrsigRecords.List() {
-				record := dns.NewRrsigRecord()
-				assignFields(record, val.(map[string]interface{}))
-				zone.AddRecord(record)
-			}
+	if d.HasChange("rrsig") {
+		zoneRrsigRecords := make([]interface{}, len(zone.Zone.Rrsig))
+		for k, v := range zone.Zone.Rrsig {
+			zoneRrsigRecords[k] = v.ToMap()
+		}
+		mergedRrsigRecords := mergeConfigs("rrsig", zoneRrsigRecords, s, d)
+		zone.Zone.Rrsig = nil
+		for _, val := range mergedRrsigRecords.List() {
+			record := dns.NewRrsigRecord()
+			assignFields(record, val.(map[string]interface{}))
+			zone.AddRecord(record)
 		}
 	}
 
-	_, ok = d.GetOk("soa")
-	if ok {
-		if d.HasChange("soa") {
-			zoneSoaRecords := make([]interface{}, 1)
-			zoneSoaRecords[0] = zone.Zone.Soa.ToMap()
-			mergedSoaRecords := mergeConfigs("soa", zoneSoaRecords, s, d)
-			zone.Zone.Soa = nil
-			for _, val := range mergedSoaRecords.List() {
-				record := dns.NewSoaRecord()
-				assignFields(record, val.(map[string]interface{}))
-				zone.AddRecord(record)
-			}
+	if d.HasChange("soa") {
+		zoneSoaRecords := make([]interface{}, 1)
+		zoneSoaRecords[0] = zone.Zone.Soa.ToMap()
+		mergedSoaRecords := mergeConfigs("soa", zoneSoaRecords, s, d)
+		zone.Zone.Soa = nil
+		for _, val := range mergedSoaRecords.List() {
+			record := dns.NewSoaRecord()
+			assignFields(record, val.(map[string]interface{}))
+			zone.AddRecord(record)
 		}
 	}
 
-	_, ok = d.GetOk("spf")
-	if ok {
-		if d.HasChange("spf") {
-			zoneSpfRecords := make([]interface{}, len(zone.Zone.Spf))
-			for k, v := range zone.Zone.Spf {
-				zoneSpfRecords[k] = v.ToMap()
-			}
-			mergedSpfRecords := mergeConfigs("spf", zoneSpfRecords, s, d)
-			zone.Zone.Spf = nil
-			for _, val := range mergedSpfRecords.List() {
-				record := dns.NewSpfRecord()
-				assignFields(record, val.(map[string]interface{}))
-				zone.AddRecord(record)
-			}
+	if d.HasChange("spf") {
+		zoneSpfRecords := make([]interface{}, len(zone.Zone.Spf))
+		for k, v := range zone.Zone.Spf {
+			zoneSpfRecords[k] = v.ToMap()
+		}
+		mergedSpfRecords := mergeConfigs("spf", zoneSpfRecords, s, d)
+		zone.Zone.Spf = nil
+		for _, val := range mergedSpfRecords.List() {
+			record := dns.NewSpfRecord()
+			assignFields(record, val.(map[string]interface{}))
+			zone.AddRecord(record)
 		}
 	}
 
-	_, ok = d.GetOk("srv")
-	if ok {
-		if d.HasChange("srv") {
-			zoneSrvRecords := make([]interface{}, len(zone.Zone.Srv))
-			for k, v := range zone.Zone.Srv {
-				zoneSrvRecords[k] = v.ToMap()
-			}
-			mergedSrvRecords := mergeConfigs("srv", zoneSrvRecords, s, d)
-			zone.Zone.Srv = nil
-			for _, val := range mergedSrvRecords.List() {
-				record := dns.NewSrvRecord()
-				assignFields(record, val.(map[string]interface{}))
-				zone.AddRecord(record)
-			}
+	if d.HasChange("srv") {
+		zoneSrvRecords := make([]interface{}, len(zone.Zone.Srv))
+		for k, v := range zone.Zone.Srv {
+			zoneSrvRecords[k] = v.ToMap()
+		}
+		mergedSrvRecords := mergeConfigs("srv", zoneSrvRecords, s, d)
+		zone.Zone.Srv = nil
+		for _, val := range mergedSrvRecords.List() {
+			record := dns.NewSrvRecord()
+			assignFields(record, val.(map[string]interface{}))
+			zone.AddRecord(record)
 		}
 	}
 
-	_, ok = d.GetOk("sshfp")
-	if ok {
-		if d.HasChange("sshfp") {
-			zoneSshfpRecords := make([]interface{}, len(zone.Zone.Sshfp))
-			for k, v := range zone.Zone.Sshfp {
-				zoneSshfpRecords[k] = v.ToMap()
-			}
-			mergedSshfpRecords := mergeConfigs("sshfp", zoneSshfpRecords, s, d)
-			zone.Zone.Sshfp = nil
-			for _, val := range mergedSshfpRecords.List() {
-				record := dns.NewSshfpRecord()
-				assignFields(record, val.(map[string]interface{}))
-				zone.AddRecord(record)
-			}
+	if d.HasChange("sshfp") {
+		zoneSshfpRecords := make([]interface{}, len(zone.Zone.Sshfp))
+		for k, v := range zone.Zone.Sshfp {
+			zoneSshfpRecords[k] = v.ToMap()
+		}
+		mergedSshfpRecords := mergeConfigs("sshfp", zoneSshfpRecords, s, d)
+		zone.Zone.Sshfp = nil
+		for _, val := range mergedSshfpRecords.List() {
+			record := dns.NewSshfpRecord()
+			assignFields(record, val.(map[string]interface{}))
+			zone.AddRecord(record)
 		}
 	}
 
-	_, ok = d.GetOk("txt")
-	if ok {
-		if d.HasChange("txt") {
-			zoneTxtRecords := make([]interface{}, len(zone.Zone.Txt))
-			for k, v := range zone.Zone.Txt {
-				zoneTxtRecords[k] = v.ToMap()
-			}
-			mergedTxtRecords := mergeConfigs("txt", zoneTxtRecords, s, d)
-			zone.Zone.Txt = nil
-			for _, val := range mergedTxtRecords.List() {
-				record := dns.NewTxtRecord()
-				assignFields(record, val.(map[string]interface{}))
-				zone.AddRecord(record)
-			}
+	if d.HasChange("txt") {
+		zoneTxtRecords := make([]interface{}, len(zone.Zone.Txt))
+		for k, v := range zone.Zone.Txt {
+			zoneTxtRecords[k] = v.ToMap()
+		}
+		mergedTxtRecords := mergeConfigs("txt", zoneTxtRecords, s, d)
+		zone.Zone.Txt = nil
+		for _, val := range mergedTxtRecords.List() {
+			record := dns.NewTxtRecord()
+			assignFields(record, val.(map[string]interface{}))
+			zone.AddRecord(record)
 		}
 	}
 }
