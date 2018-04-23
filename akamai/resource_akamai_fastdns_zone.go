@@ -1020,7 +1020,7 @@ func unmarshalResourceData(d *schema.ResourceData, zone *dns.Zone) {
 			for k, v := range zone.Zone.Ptr {
 				zonePtrRecords[k] = v.ToMap()
 			}
-			mergedPtrRecords := mergeConfigs("Ptr", zonePtrRecords, s, d)
+			mergedPtrRecords := mergeConfigs("ptr", zonePtrRecords, s, d)
 			zone.Zone.Ptr = nil
 			for _, val := range mergedPtrRecords.List() {
 				record := dns.NewPtrRecord()
@@ -1054,7 +1054,7 @@ func unmarshalResourceData(d *schema.ResourceData, zone *dns.Zone) {
 			for k, v := range zone.Zone.Rrsig {
 				zoneRrsigRecords[k] = v.ToMap()
 			}
-			mergedRrsigRecords := mergeConfigs("Rrsig", zoneRrsigRecords, s, d)
+			mergedRrsigRecords := mergeConfigs("rrsig", zoneRrsigRecords, s, d)
 			zone.Zone.Rrsig = nil
 			for _, val := range mergedRrsigRecords.List() {
 				record := dns.NewRrsigRecord()
