@@ -8,7 +8,7 @@ import (
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
 
-	"github.com/akamai/AkamaiOPEN-edgegrid-golang/configdns-v1"
+	dns "github.com/akamai/AkamaiOPEN-edgegrid-golang/configdns-v1"
 )
 
 var testAccAkamaiFastDNSZoneConfig = fmt.Sprintf(`

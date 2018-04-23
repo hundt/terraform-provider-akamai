@@ -1,8 +1,9 @@
 package helper
 
 import (
-	"github.com/hashicorp/terraform/helper/schema"
 	"strconv"
+
+	"github.com/hashicorp/terraform/helper/schema"
 )
 
 type Elem map[string]interface{}

@@ -3,9 +3,9 @@ package akamai
 import (
 	"fmt"
 
-	"github.com/akamai/AkamaiOPEN-edgegrid-golang/configdns-v1"
+	dns "github.com/akamai/AkamaiOPEN-edgegrid-golang/configdns-v1"
 	"github.com/akamai/AkamaiOPEN-edgegrid-golang/edgegrid"
-	"github.com/akamai/AkamaiOPEN-edgegrid-golang/papi-v1"
+	papi "github.com/akamai/AkamaiOPEN-edgegrid-golang/papi-v1"
 	"github.com/hashicorp/terraform/helper/schema"
 	"github.com/hashicorp/terraform/terraform"
 )

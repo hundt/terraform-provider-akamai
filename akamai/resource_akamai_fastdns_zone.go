@@ -6,7 +6,7 @@ import (
 	"log"
 	"sync"
 
-	"github.com/akamai/AkamaiOPEN-edgegrid-golang/configdns-v1"
+	dns "github.com/akamai/AkamaiOPEN-edgegrid-golang/configdns-v1"
 	"github.com/hashicorp/terraform/helper/hashcode"
 	"github.com/hashicorp/terraform/helper/schema"
 )

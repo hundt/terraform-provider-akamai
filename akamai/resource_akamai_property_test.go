@@ -7,8 +7,8 @@ import (
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
 
-	"github.com/akamai/AkamaiOPEN-edgegrid-golang/client-v1"
-	"github.com/akamai/AkamaiOPEN-edgegrid-golang/papi-v1"
+	client "github.com/akamai/AkamaiOPEN-edgegrid-golang/client-v1"
+	papi "github.com/akamai/AkamaiOPEN-edgegrid-golang/papi-v1"
 )
 
 var testAccAkamaiPropertyConfig = fmt.Sprintf(`

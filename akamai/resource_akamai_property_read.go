@@ -1,7 +1,7 @@
 package akamai
 
 import (
-	"github.com/akamai/AkamaiOPEN-edgegrid-golang/papi-v1"
+	papi "github.com/akamai/AkamaiOPEN-edgegrid-golang/papi-v1"
 	"github.com/hashicorp/terraform/helper/schema"
 )
 
